@@ -1,0 +1,114 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  accounts      Account[]
+  sessions      Session[]
+  company       Company?
+  createdAt     DateTime  @default(now())
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Company {
+  id          String       @id @default(cuid())
+  name        String
+  website     String?
+  industry    String?
+  userId      String       @unique
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  prompts     Prompt[]
+  competitors Competitor[]
+  createdAt   DateTime     @default(now())
+}
+
+model Prompt {
+  id             String          @id @default(cuid())
+  promptText     String          @db.Text
+  category       PromptCategory
+  priority       PromptPriority  @default(MEDIUM)
+  isActive       Boolean         @default(true)
+  companyId      String
+  company        Company         @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  monitorResults MonitorResult[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+}
+
+model MonitorResult {
+  id                    String   @id @default(cuid())
+  promptId              String
+  platform              String   @default("ChatGPT")
+  brandMentioned        Boolean
+  responseText          String   @db.Text
+  competitorsMentioned  String[] @default([])
+  checkedAt             DateTime @default(now())
+  prompt                Prompt   @relation(fields: [promptId], references: [id], onDelete: Cascade)
+}
+
+model Competitor {
+  id        String   @id @default(cuid())
+  name      String
+  website   String?
+  companyId String
+  company   Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+enum PromptCategory {
+  PRODUCT
+  SERVICE
+  COMPARISON
+  HOW_TO
+}
+
+enum PromptPriority {
+  LOW
+  MEDIUM
+  HIGH
+}
