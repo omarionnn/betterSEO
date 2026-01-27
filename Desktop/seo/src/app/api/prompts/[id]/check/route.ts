@@ -10,6 +10,7 @@ export async function POST(
 ) {
   try {
     const { id } = await params
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const session = await getServerSession(authOptions as any) as any
 
     if (!session?.user?.id) {
@@ -60,6 +61,7 @@ export async function POST(
         responseText: result.responseText,
         competitorsMentioned: result.competitorsMentioned.join(','),
         sources: result.sources?.join(',') || null,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any
     })
 

@@ -5,6 +5,7 @@ import { prisma } from '@/lib/db'
 
 export async function GET() {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const session = await getServerSession(authOptions as any) as any
 
     if (!session?.user?.id) {
@@ -51,7 +52,9 @@ export async function GET() {
       competitorsMentioned: result.competitorsMentioned
         ? result.competitorsMentioned.split(',').filter(c => c.trim())
         : [],
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       sources: (result as any).sources
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ? (result as any).sources.split(',').filter((s: string) => s.trim())
         : []
     }))
