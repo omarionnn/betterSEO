@@ -6,6 +6,7 @@ import { generateSuggestedPrompts } from '@/lib/ai-monitoring'
 
 export async function POST() {
     try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const session = await getServerSession(authOptions as any) as any
 
         if (!session?.user?.id) {

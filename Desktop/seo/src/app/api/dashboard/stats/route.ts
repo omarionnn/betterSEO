@@ -5,14 +5,17 @@ import { prisma } from '@/lib/db'
 import { MonitorResult } from '@prisma/client'
 
 export async function GET() {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const session = await getServerSession(authOptions as any)
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     if (!(session as any)?.user?.email) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
     try {
         const user = await prisma.user.findUnique({
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             where: { email: (session as any).user.email },
             include: {
                 company: {
@@ -33,6 +36,7 @@ export async function GET() {
         }
 
         const company = user.company
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const allResults: MonitorResult[] = company.prompts.flatMap((p: any) => p.monitorResults)
 
         const totalPrompts = company.prompts.length
