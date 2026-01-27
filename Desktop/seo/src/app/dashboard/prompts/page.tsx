@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
+import { Card, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Plus, Play, Edit, Trash2, Sparkles, Loader2, Eye, CheckCircle2, MessageSquare } from 'lucide-react'
+import { Plus, Play, Edit, Trash2, Sparkles, Loader2, Eye, MessageSquare } from 'lucide-react'
 import { AddPromptDialog } from '@/components/dashboard/add-prompt-dialog'
 import { EditPromptDialog } from '@/components/dashboard/edit-prompt-dialog'
 import { GeneratePromptsDialog } from '@/components/dashboard/generate-prompts-dialog'
@@ -33,7 +33,9 @@ export default function Prompts() {
 
   // New States for Progress
   const [checkingIds, setCheckingIds] = useState<Record<string, string>>({})
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [finishedResults, setFinishedResults] = useState<Record<string, any>>({})
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [selectedResult, setSelectedResult] = useState<any | null>(null)
   const [resultDialogOpen, setResultDialogOpen] = useState(false)
 
@@ -194,14 +196,7 @@ export default function Prompts() {
     }
   }
 
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case 'HIGH': return 'bg-red-500/10 text-red-500 border-red-500/20'
-      case 'MEDIUM': return 'bg-orange-500/10 text-orange-400 border-orange-500/20'
-      case 'LOW': return 'bg-blue-500/10 text-blue-400 border-blue-500/20'
-      default: return 'bg-gray-500/10 text-gray-400 border-gray-500/20'
-    }
-  }
+
 
   if (loading) {
     return (

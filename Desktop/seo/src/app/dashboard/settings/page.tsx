@@ -9,18 +9,6 @@ import { Label } from '@/components/ui/label'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Building, User, Key } from 'lucide-react'
 
-interface UserData {
-  id: string
-  name: string
-  email: string
-  company?: {
-    id: string
-    name: string
-    website?: string | null
-    industry?: string | null
-  }
-}
-
 export default function Settings() {
   const { data: session } = useSession()
   const [loading, setLoading] = useState(true)

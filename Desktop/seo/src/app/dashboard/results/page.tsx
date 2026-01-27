@@ -144,7 +144,7 @@ export default function Results() {
             <div>
               <h3 className="text-3xl font-black text-white mb-4 italic">Ledger Empty</h3>
               <p className="text-gray-500 font-medium leading-relaxed">
-                No intelligence data discovered. Execute dynamic prompts to begin populating your brand's AI response history.
+                No intelligence data discovered. Execute dynamic prompts to begin populating your brand&apos;s AI response history.
               </p>
             </div>
           </div>
@@ -165,7 +165,7 @@ export default function Results() {
                     {getStatusIcon(result.brandMentioned)}
                     <div className="flex-1 min-w-0">
                       <p className="text-lg font-black text-white group-hover:text-primary transition-colors leading-tight mb-2 truncate">
-                        "{result.prompt.promptText}"
+                        &quot;{result.prompt.promptText}&quot;
                       </p>
                       <div className="flex flex-wrap items-center gap-4">
                         <Badge variant="outline" className={cn("text-[10px] px-3 py-1 border-2 font-black uppercase tracking-widest rounded-xl", getCategoryColor(result.prompt.category))}>
