@@ -3,12 +3,11 @@
 import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Plus, Edit, Trash2, TrendingUp, AlertTriangle, Users, Link as LinkIcon, Clock } from 'lucide-react'
 import { AddCompetitorDialog } from '@/components/dashboard/add-competitor-dialog'
 import { EditCompetitorDialog } from '@/components/dashboard/edit-competitor-dialog'
-import { cn } from '@/lib/utils'
 
 interface Competitor {
   id: string
@@ -169,7 +168,7 @@ export default function Competitors() {
             <div>
               <h3 className="text-3xl font-black text-white mb-4">Market is clear</h3>
               <p className="text-gray-500 leading-relaxed font-medium">
-                Add competitors to see how they rank against your brand in the eyes of LLMs. We'll track their mention frequency automatically.
+                Add competitors to see how they rank against your brand in the eyes of LLMs. We&apos;ll track their mention frequency automatically.
               </p>
             </div>
             <Button size="lg" className="rounded-2xl" onClick={() => setAddDialogOpen(true)}>

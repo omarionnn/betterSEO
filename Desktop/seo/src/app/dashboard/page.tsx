@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { MessageSquare, BarChart3, TrendingUp, Users, ChevronRight, Loader2 } from 'lucide-react'
+import { MessageSquare, BarChart3, TrendingUp, Users, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface DashboardStats {
@@ -69,7 +69,7 @@ export default function Dashboard() {
             Pulse <span className="text-primary font-medium tracking-normal text-2xl ml-2">Overview</span>
           </h1>
           <p className="text-gray-400 font-medium">
-            Welcome back, {session?.user?.name?.split(' ')[0] || 'Operator'}. Here's your brand's betterSEO health.
+            Welcome back, {session?.user?.name?.split(' ')[0] || 'Operator'}. Here&apos;s your brand&apos;s betterSEO health.
           </p>
         </div>
         <div />
@@ -255,7 +255,7 @@ export default function Dashboard() {
               </div>
               <h3 className="text-2xl font-black text-white mb-3 italic tracking-tight">Insights Engine</h3>
               <p className="text-sm text-gray-400 leading-relaxed font-medium">
-                Comprehensive visibility trends and recovery maps will activate once you've conducted 5 protocol checks.
+                Comprehensive visibility trends and recovery maps will activate once you&apos;ve conducted 5 protocol checks.
               </p>
               <div className="mt-6 flex items-center space-x-2">
                 <div className="h-1 w-24 bg-white/5 rounded-full overflow-hidden">

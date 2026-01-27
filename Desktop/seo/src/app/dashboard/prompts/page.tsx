@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
-import { Card, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Plus, Play, Edit, Trash2, Sparkles, Loader2, Eye, MessageSquare } from 'lucide-react'
 import { AddPromptDialog } from '@/components/dashboard/add-prompt-dialog'
