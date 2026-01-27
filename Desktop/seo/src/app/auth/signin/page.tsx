@@ -65,7 +65,7 @@ export default function SignIn() {
         <CardContent className="p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-3">
-              <Label htmlFor="email" className="text-[10px] font-black uppercase text-gray-500 tracking-widest ml-1">Identity Protocol</Label>
+              <Label htmlFor="email" className="text-[10px] font-black uppercase text-gray-500 tracking-widest ml-1">Email Address</Label>
               <Input
                 id="email"
                 type="email"
@@ -77,7 +77,7 @@ export default function SignIn() {
               />
             </div>
             <div className="space-y-3">
-              <Label htmlFor="password" className="text-[10px] font-black uppercase text-gray-500 tracking-widest ml-1">Access Cipher</Label>
+              <Label htmlFor="password" className="text-[10px] font-black uppercase text-gray-500 tracking-widest ml-1">Password</Label>
               <Input
                 id="password"
                 type="password"
@@ -96,7 +96,7 @@ export default function SignIn() {
             )}
 
             <Button type="submit" className="w-full h-14 rounded-2xl font-black text-lg shadow-xl shadow-primary/20 transition-all active:scale-95" disabled={loading}>
-              {loading ? 'Authorizing...' : 'Enter Registry'}
+              {loading ? 'Signing In...' : 'Sign In'}
             </Button>
           </form>
 
@@ -104,7 +104,7 @@ export default function SignIn() {
             <p className="text-gray-500 font-bold text-xs uppercase tracking-widest">
               New Recruiter?{' '}
               <Link href="/auth/signup" className="text-primary hover:text-primary/80 transition-colors ml-2 underline underline-offset-4 decoration-2">
-                Join Orbit
+                Join betterSEO
               </Link>
             </p>
           </div>
@@ -112,7 +112,7 @@ export default function SignIn() {
       </Card>
 
       <div className="fixed bottom-8 left-1/2 -translate-x-1/2 text-center pointer-events-none">
-        <p className="text-[10px] font-black text-gray-600 uppercase tracking-[0.3em]">Secure betterSEO Multi-Factor Encryption Active</p>
+        <p className="text-[10px] font-black text-gray-600 uppercase tracking-[0.3em]">Secure betterSEO Connection Active</p>
       </div>
     </div>
   )

@@ -48,7 +48,7 @@ export default function Home() {
           <div className="flex items-center space-x-8">
             <Link href="/auth/signin" className="text-sm font-bold text-gray-400 hover:text-white transition-colors">Sign In</Link>
             <Link href="/auth/signup">
-              <Button className="rounded-xl px-6 font-bold shadow-lg shadow-primary/20">Join Orbit</Button>
+              <Button className="rounded-xl px-6 font-bold shadow-lg shadow-primary/20">Join betterSEO</Button>
             </Link>
           </div>
         </div>
@@ -79,11 +79,7 @@ export default function Home() {
                 <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
-            <Link href="/auth/signin">
-              <Button variant="outline" size="lg" className="glass h-16 px-12 rounded-2xl font-black text-lg border-white/10 hover:bg-white/5">
-                Enterprise Demo
-              </Button>
-            </Link>
+
           </div>
         </div>
 

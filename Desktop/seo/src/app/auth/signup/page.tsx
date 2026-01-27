@@ -93,7 +93,7 @@ export default function SignUp() {
           <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center border border-primary/20 mx-auto mb-6">
             <UserPlus className="h-8 w-8 text-primary" />
           </div>
-          <CardTitle className="text-3xl font-black text-white tracking-tight mb-2">Join Orbit</CardTitle>
+          <CardTitle className="text-3xl font-black text-white tracking-tight mb-2">Join betterSEO</CardTitle>
           <CardDescription className="text-gray-400 font-medium italic">
             Begin your journey into deep betterSEO intelligence.
           </CardDescription>
@@ -110,7 +110,7 @@ export default function SignUp() {
               <div className="space-y-6 animate-in slide-in-from-right-4 duration-500">
                 <div className="flex items-center space-x-3 text-primary mb-2">
                   <UserIcon className="h-4 w-4" />
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em]">Personal Identity</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em]">Personal Details</span>
                 </div>
                 <div className="space-y-3">
                   <Label htmlFor="name" className="text-[10px] font-black uppercase text-gray-500 tracking-widest ml-1">Full Name</Label>
@@ -125,12 +125,12 @@ export default function SignUp() {
                   />
                 </div>
                 <div className="space-y-3">
-                  <Label htmlFor="email" className="text-[10px] font-black uppercase text-gray-500 tracking-widest ml-1">Communication Protocol</Label>
+                  <Label htmlFor="email" className="text-[10px] font-black uppercase text-gray-500 tracking-widest ml-1">Email Address</Label>
                   <Input
                     id="email"
                     name="email"
                     type="email"
-                    placeholder="elexis@orbit.com"
+                    placeholder="name@example.com"
                     className="h-12 bg-white/5 border-white/5 rounded-xl focus:ring-primary focus:border-primary text-white font-medium"
                     value={formData.email}
                     onChange={handleChange}
@@ -139,7 +139,7 @@ export default function SignUp() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-3">
-                    <Label htmlFor="password" className="text-[10px] font-black uppercase text-gray-500 tracking-widest ml-1">Encryption Cipher</Label>
+                    <Label htmlFor="password" className="text-[10px] font-black uppercase text-gray-500 tracking-widest ml-1">Password</Label>
                     <Input
                       id="password"
                       name="password"
@@ -152,7 +152,7 @@ export default function SignUp() {
                     />
                   </div>
                   <div className="space-y-3">
-                    <Label htmlFor="confirmPassword" className="text-[10px] font-black uppercase text-gray-500 tracking-widest ml-1">Verify Cipher</Label>
+                    <Label htmlFor="confirmPassword" className="text-[10px] font-black uppercase text-gray-500 tracking-widest ml-1">Confirm Password</Label>
                     <Input
                       id="confirmPassword"
                       name="confirmPassword"
@@ -181,7 +181,7 @@ export default function SignUp() {
                   <Input
                     id="companyName"
                     name="companyName"
-                    placeholder="Aperture Science"
+                    placeholder="Acme Corp"
                     className="h-12 bg-white/5 border-white/5 rounded-xl focus:ring-emerald-500 focus:border-emerald-500 text-white font-medium"
                     value={formData.companyName}
                     onChange={handleChange}
@@ -195,7 +195,7 @@ export default function SignUp() {
                       id="website"
                       name="website"
                       type="url"
-                      placeholder="aperture.com"
+                      placeholder="acme.com"
                       className="h-12 bg-white/5 border-white/5 rounded-xl focus:ring-emerald-500 focus:border-emerald-500 text-white font-medium"
                       value={formData.website}
                       onChange={handleChange}
@@ -225,7 +225,7 @@ export default function SignUp() {
                     <ChevronLeft className="h-5 w-5" />
                   </Button>
                   <Button type="submit" className="flex-1 h-14 rounded-2xl font-black text-lg shadow-xl shadow-primary/20" disabled={loading}>
-                    {loading ? 'Initializing...' : 'Establish Profile'}
+                    {loading ? 'Creating Account...' : 'Create Account'}
                   </Button>
                 </div>
               </div>
@@ -236,7 +236,7 @@ export default function SignUp() {
             <p className="text-gray-500 font-bold text-xs uppercase tracking-widest">
               Existing Operator?{' '}
               <Link href="/auth/signin" className="text-primary hover:text-primary/80 transition-colors ml-2 underline underline-offset-4 decoration-2">
-                Authorize Access
+                Sign In
               </Link>
             </p>
           </div>
@@ -244,7 +244,7 @@ export default function SignUp() {
       </Card>
 
       <div className="fixed bottom-8 left-1/2 -translate-x-1/2 text-center pointer-events-none">
-        <p className="text-[10px] font-black text-gray-600 uppercase tracking-[0.3em]">Establishing Global betterSEO Encryption Node</p>
+        <p className="text-[10px] font-black text-gray-600 uppercase tracking-[0.3em]">Establishing Secure betterSEO Connection</p>
       </div>
     </div>
   )

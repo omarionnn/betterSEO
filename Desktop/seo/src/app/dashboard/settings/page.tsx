@@ -280,7 +280,7 @@ export default function Settings() {
             <CardContent className="p-8">
               <form onSubmit={handleChangePassword} className="space-y-6 max-w-xl">
                 <div className="space-y-3">
-                  <Label htmlFor="currentPassword" className="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Existing Cipher</Label>
+                  <Label htmlFor="currentPassword" className="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Current Password</Label>
                   <Input
                     id="currentPassword"
                     type="password"
@@ -292,7 +292,7 @@ export default function Settings() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-3">
-                    <Label htmlFor="newPassword" className="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">New Cipher</Label>
+                    <Label htmlFor="newPassword" className="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">New Password</Label>
                     <Input
                       id="newPassword"
                       type="password"
@@ -303,7 +303,7 @@ export default function Settings() {
                     />
                   </div>
                   <div className="space-y-3">
-                    <Label htmlFor="confirmPassword" className="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Confirm Cipher</Label>
+                    <Label htmlFor="confirmPassword" className="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Confirm Password</Label>
                     <Input
                       id="confirmPassword"
                       type="password"
@@ -315,7 +315,7 @@ export default function Settings() {
                   </div>
                 </div>
                 <Button type="submit" disabled={saving} className="rounded-xl h-12 px-8 font-bold shadow-lg shadow-primary/20">
-                  {saving ? 'Encrypting...' : 'Update Cipher'}
+                  {saving ? 'Saving...' : 'Update Password'}
                 </Button>
               </form>
             </CardContent>
