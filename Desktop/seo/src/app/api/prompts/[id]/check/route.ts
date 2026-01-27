@@ -6,11 +6,12 @@ import { checkPromptWithAI } from '@/lib/ai-monitoring'
 
 export async function POST(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const session = await getServerSession(authOptions as any) as any
-    
+
     if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
@@ -30,7 +31,7 @@ export async function POST(
     // Get prompt with company info
     const prompt = await prisma.prompt.findFirst({
       where: {
-        id: params.id,
+        id,
         companyId: user.company.id,
         isActive: true
       },
@@ -51,19 +52,24 @@ export async function POST(
     const result = await checkPromptWithAI(prompt, prompt.company)
 
     // Save result to database
-    await prisma.monitorResult.create({
+    const savedResult = await prisma.monitorResult.create({
       data: {
         promptId: prompt.id,
         platform: 'ChatGPT',
         brandMentioned: result.brandMentioned,
         responseText: result.responseText,
         competitorsMentioned: result.competitorsMentioned.join(','),
-      }
+        sources: result.sources?.join(',') || null,
+      } as any
     })
 
     return NextResponse.json({
       message: 'Prompt checked successfully',
-      result
+      result: {
+        ...savedResult,
+        competitorsMentioned: result.competitorsMentioned, // Use the array for UI consistency
+        sources: result.sources
+      }
     })
 
   } catch (error) {

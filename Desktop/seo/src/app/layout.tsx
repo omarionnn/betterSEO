@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AI Visibility Platform",
+  title: "betterSEO",
   description: "Track your brand visibility in AI search results",
 };
 

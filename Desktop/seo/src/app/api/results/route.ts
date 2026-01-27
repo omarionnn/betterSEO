@@ -6,7 +6,7 @@ import { prisma } from '@/lib/db'
 export async function GET() {
   try {
     const session = await getServerSession(authOptions as any) as any
-    
+
     if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
@@ -45,11 +45,14 @@ export async function GET() {
       }
     })
 
-    // Transform the results to include parsed competitors
+    // Transform the results to include parsed competitors and sources
     const transformedResults = results.map(result => ({
       ...result,
-      competitorsMentioned: result.competitorsMentioned 
-        ? result.competitorsMentioned.split(',').filter(c => c.trim()) 
+      competitorsMentioned: result.competitorsMentioned
+        ? result.competitorsMentioned.split(',').filter(c => c.trim())
+        : [],
+      sources: (result as any).sources
+        ? (result as any).sources.split(',').filter((s: string) => s.trim())
         : []
     }))
 

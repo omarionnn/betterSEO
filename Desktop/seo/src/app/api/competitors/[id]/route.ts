@@ -5,11 +5,12 @@ import { prisma } from '@/lib/db'
 
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const session = await getServerSession(authOptions as any) as any
-    
+
     if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
@@ -38,7 +39,7 @@ export async function PUT(
     // Check if competitor exists and belongs to user's company
     const existingCompetitor = await prisma.competitor.findFirst({
       where: {
-        id: params.id,
+        id,
         companyId: user.company.id
       }
     })
@@ -53,7 +54,7 @@ export async function PUT(
         name: name,
         companyId: user.company.id,
         id: {
-          not: params.id
+          not: id
         }
       }
     })
@@ -67,7 +68,7 @@ export async function PUT(
 
     // Update competitor
     const competitor = await prisma.competitor.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         name,
         website: website || null,
@@ -87,11 +88,12 @@ export async function PUT(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const session = await getServerSession(authOptions as any) as any
-    
+
     if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
@@ -111,7 +113,7 @@ export async function DELETE(
     // Check if competitor exists and belongs to user's company
     const existingCompetitor = await prisma.competitor.findFirst({
       where: {
-        id: params.id,
+        id,
         companyId: user.company.id
       }
     })
@@ -122,7 +124,7 @@ export async function DELETE(
 
     // Delete competitor
     await prisma.competitor.delete({
-      where: { id: params.id }
+      where: { id }
     })
 
     return NextResponse.json({ message: 'Competitor deleted successfully' })

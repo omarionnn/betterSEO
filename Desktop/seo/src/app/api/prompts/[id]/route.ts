@@ -5,11 +5,12 @@ import { prisma } from '@/lib/db'
 
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const session = await getServerSession(authOptions as any) as any
-    
+
     if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
@@ -57,7 +58,7 @@ export async function PUT(
     // Check if prompt exists and belongs to user's company
     const existingPrompt = await prisma.prompt.findFirst({
       where: {
-        id: params.id,
+        id,
         companyId: user.company.id
       }
     })
@@ -68,7 +69,7 @@ export async function PUT(
 
     // Update prompt
     const prompt = await prisma.prompt.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         promptText,
         category,
@@ -89,11 +90,12 @@ export async function PUT(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const session = await getServerSession(authOptions as any) as any
-    
+
     if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
@@ -113,7 +115,7 @@ export async function DELETE(
     // Check if prompt exists and belongs to user's company
     const existingPrompt = await prisma.prompt.findFirst({
       where: {
-        id: params.id,
+        id,
         companyId: user.company.id
       }
     })
@@ -124,7 +126,7 @@ export async function DELETE(
 
     // Delete prompt (this will also delete related monitor results due to cascade)
     await prisma.prompt.delete({
-      where: { id: params.id }
+      where: { id }
     })
 
     return NextResponse.json({ message: 'Prompt deleted successfully' })

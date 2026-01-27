@@ -123,7 +123,7 @@ export default function Settings() {
 
   const handleChangePassword = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     if (newPassword !== confirmPassword) {
       alert('New passwords do not match')
       return
@@ -167,162 +167,169 @@ export default function Settings() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <div className="text-lg">Loading settings...</div>
+      <div className="flex flex-col items-center justify-center h-96 space-y-4">
+        <div className="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin" />
+        <div className="text-gray-400 font-medium animate-pulse uppercase tracking-widest text-xs">Loading preferences...</div>
       </div>
     )
   }
 
   return (
-    <div className="space-y-6">
+    <div className="animate-in fade-in slide-in-from-bottom-4 duration-1000 space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
-        <p className="text-gray-600 mt-2">
-          Manage your account and company settings
+        <h1 className="text-4xl font-black tracking-tight text-white mb-2">
+          Control <span className="text-primary font-medium tracking-normal text-2xl ml-2">Center</span>
+        </h1>
+        <p className="text-gray-400 font-medium">
+          Manage your account, organization, and security protocols.
         </p>
       </div>
 
-      <Tabs defaultValue="profile" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="profile" className="flex items-center space-x-2">
-            <User className="h-4 w-4" />
-            <span>Profile</span>
+      <Tabs defaultValue="profile" className="space-y-8">
+        <TabsList className="bg-white/5 border border-white/5 p-1 rounded-2xl h-14 w-full md:w-auto overflow-x-auto no-scrollbar">
+          <TabsTrigger value="profile" className="rounded-xl px-8 h-full data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-lg transition-all font-bold text-xs uppercase tracking-widest">
+            <User className="h-4 w-4 mr-2" />
+            Profile
           </TabsTrigger>
-          <TabsTrigger value="company" className="flex items-center space-x-2">
-            <Building className="h-4 w-4" />
-            <span>Company</span>
+          <TabsTrigger value="company" className="rounded-xl px-8 h-full data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-lg transition-all font-bold text-xs uppercase tracking-widest">
+            <Building className="h-4 w-4 mr-2" />
+            Organization
           </TabsTrigger>
-          <TabsTrigger value="security" className="flex items-center space-x-2">
-            <Key className="h-4 w-4" />
-            <span>Security</span>
+          <TabsTrigger value="security" className="rounded-xl px-8 h-full data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-lg transition-all font-bold text-xs uppercase tracking-widest">
+            <Key className="h-4 w-4 mr-2" />
+            Security
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="profile">
-          <Card>
-            <CardHeader>
-              <CardTitle>Profile Information</CardTitle>
-              <CardDescription>
-                Update your personal account information
-              </CardDescription>
+        <TabsContent value="profile" className="animate-in fade-in duration-500">
+          <Card className="glass border-white/5 overflow-hidden">
+            <CardHeader className="border-b border-white/5 bg-white/[0.02] p-8">
+              <CardTitle className="text-xl font-bold">Personal Profile</CardTitle>
+              <CardDescription className="text-gray-400 font-medium">Your identity within the betterSEO network.</CardDescription>
             </CardHeader>
-            <CardContent>
-              <form onSubmit={handleUpdateProfile} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="userName">Full Name</Label>
+            <CardContent className="p-8">
+              <form onSubmit={handleUpdateProfile} className="space-y-6 max-w-xl">
+                <div className="space-y-3">
+                  <Label htmlFor="userName" className="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Full Name</Label>
                   <Input
                     id="userName"
                     value={userName}
                     onChange={(e) => setUserName(e.target.value)}
-                    placeholder="Your full name"
+                    placeholder="Enter full name"
+                    className="h-12 bg-white/5 border-white/5 rounded-xl focus:ring-primary focus:border-primary text-white font-medium"
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="userEmail">Email Address</Label>
+                <div className="space-y-3">
+                  <Label htmlFor="userEmail" className="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Email Protocol</Label>
                   <Input
                     id="userEmail"
                     type="email"
                     value={userEmail}
                     onChange={(e) => setUserEmail(e.target.value)}
-                    placeholder="your@email.com"
+                    placeholder="name@domain.com"
+                    className="h-12 bg-white/5 border-white/5 rounded-xl focus:ring-primary focus:border-primary text-white font-medium"
                   />
                 </div>
-                <Button type="submit" disabled={saving}>
-                  {saving ? 'Saving...' : 'Update Profile'}
+                <Button type="submit" disabled={saving} className="rounded-xl h-12 px-8 font-bold shadow-lg shadow-primary/20">
+                  {saving ? 'Syncing...' : 'Update Records'}
                 </Button>
               </form>
             </CardContent>
           </Card>
         </TabsContent>
 
-        <TabsContent value="company">
-          <Card>
-            <CardHeader>
-              <CardTitle>Company Information</CardTitle>
-              <CardDescription>
-                Update your company details for better AI monitoring
-              </CardDescription>
+        <TabsContent value="company" className="animate-in fade-in duration-500">
+          <Card className="glass border-white/5 overflow-hidden">
+            <CardHeader className="border-b border-white/5 bg-white/[0.02] p-8">
+              <CardTitle className="text-xl font-bold">Organization Details</CardTitle>
+              <CardDescription className="text-gray-400 font-medium">Define your brand context for improved AI analysis.</CardDescription>
             </CardHeader>
-            <CardContent>
-              <form onSubmit={handleUpdateCompany} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="companyName">Company Name</Label>
+            <CardContent className="p-8">
+              <form onSubmit={handleUpdateCompany} className="space-y-6 max-w-xl">
+                <div className="space-y-3">
+                  <Label htmlFor="companyName" className="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Brand Name</Label>
                   <Input
                     id="companyName"
                     value={companyName}
                     onChange={(e) => setCompanyName(e.target.value)}
-                    placeholder="Your company name"
+                    placeholder="BetterSEO Inc."
+                    className="h-12 bg-white/5 border-white/5 rounded-xl focus:ring-primary focus:ring-primary/20 text-white font-medium"
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="companyWebsite">Website</Label>
+                <div className="space-y-3">
+                  <Label htmlFor="companyWebsite" className="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Primary Domain</Label>
                   <Input
                     id="companyWebsite"
                     type="url"
                     value={companyWebsite}
                     onChange={(e) => setCompanyWebsite(e.target.value)}
-                    placeholder="https://yourcompany.com"
+                    placeholder="betterseohq.com"
+                    className="h-12 bg-white/5 border-white/5 rounded-xl focus:ring-primary focus:ring-primary/20 text-white font-medium"
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="companyIndustry">Industry</Label>
+                <div className="space-y-3">
+                  <Label htmlFor="companyIndustry" className="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Market Industry</Label>
                   <Input
                     id="companyIndustry"
                     value={companyIndustry}
                     onChange={(e) => setCompanyIndustry(e.target.value)}
-                    placeholder="e.g., Technology, Healthcare, Finance"
+                    placeholder="e.g., Marketing Technology"
+                    className="h-12 bg-white/5 border-white/5 rounded-xl focus:ring-primary focus:ring-primary/20 text-white font-medium"
                   />
                 </div>
-                <Button type="submit" disabled={saving}>
-                  {saving ? 'Saving...' : 'Update Company'}
+                <Button type="submit" disabled={saving} className="rounded-xl h-12 px-8 font-bold shadow-lg shadow-primary/20">
+                  {saving ? 'Syncing...' : 'Update Context'}
                 </Button>
               </form>
             </CardContent>
           </Card>
         </TabsContent>
 
-        <TabsContent value="security">
-          <Card>
-            <CardHeader>
-              <CardTitle>Change Password</CardTitle>
-              <CardDescription>
-                Update your account password for better security
-              </CardDescription>
+        <TabsContent value="security" className="animate-in fade-in duration-500">
+          <Card className="glass border-white/5 overflow-hidden">
+            <CardHeader className="border-b border-white/5 bg-white/[0.02] p-8">
+              <CardTitle className="text-xl font-bold">Security Protocols</CardTitle>
+              <CardDescription className="text-gray-400 font-medium">Protect your betterSEO intelligence from unauthorized access.</CardDescription>
             </CardHeader>
-            <CardContent>
-              <form onSubmit={handleChangePassword} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="currentPassword">Current Password</Label>
+            <CardContent className="p-8">
+              <form onSubmit={handleChangePassword} className="space-y-6 max-w-xl">
+                <div className="space-y-3">
+                  <Label htmlFor="currentPassword" className="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Existing Cipher</Label>
                   <Input
                     id="currentPassword"
                     type="password"
                     value={currentPassword}
                     onChange={(e) => setCurrentPassword(e.target.value)}
                     placeholder="Enter current password"
+                    className="h-12 bg-white/5 border-white/5 rounded-xl focus:ring-primary text-white font-medium"
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="newPassword">New Password</Label>
-                  <Input
-                    id="newPassword"
-                    type="password"
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
-                    placeholder="Enter new password"
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-3">
+                    <Label htmlFor="newPassword" className="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">New Cipher</Label>
+                    <Input
+                      id="newPassword"
+                      type="password"
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                      placeholder="New password"
+                      className="h-12 bg-white/5 border-white/5 rounded-xl focus:ring-primary text-white font-medium"
+                    />
+                  </div>
+                  <div className="space-y-3">
+                    <Label htmlFor="confirmPassword" className="text-[10px] font-black uppercase text-gray-400 tracking-widest ml-1">Confirm Cipher</Label>
+                    <Input
+                      id="confirmPassword"
+                      type="password"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      placeholder="Repeat password"
+                      className="h-12 bg-white/5 border-white/5 rounded-xl focus:ring-primary text-white font-medium"
+                    />
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="confirmPassword">Confirm New Password</Label>
-                  <Input
-                    id="confirmPassword"
-                    type="password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    placeholder="Confirm new password"
-                  />
-                </div>
-                <Button type="submit" disabled={saving}>
-                  {saving ? 'Changing...' : 'Change Password'}
+                <Button type="submit" disabled={saving} className="rounded-xl h-12 px-8 font-bold shadow-lg shadow-primary/20">
+                  {saving ? 'Encrypting...' : 'Update Cipher'}
                 </Button>
               </form>
             </CardContent>
