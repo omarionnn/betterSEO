@@ -5,8 +5,9 @@ import { prisma } from '@/lib/db'
 
 export async function GET() {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const session = await getServerSession(authOptions as any) as any
-    
+
     if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
@@ -33,7 +34,8 @@ export async function GET() {
     }
 
     // Return user data without password
-    const { password, ...userWithoutPassword } = user
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password: _password, ...userWithoutPassword } = user
 
     return NextResponse.json(userWithoutPassword)
 
@@ -48,8 +50,9 @@ export async function GET() {
 
 export async function PUT(request: Request) {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const session = await getServerSession(authOptions as any) as any
-    
+
     if (!session?.user?.id) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
@@ -102,7 +105,8 @@ export async function PUT(request: Request) {
     })
 
     // Return updated user data without password
-    const { password, ...userWithoutPassword } = updatedUser
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password: _password, ...userWithoutPassword } = updatedUser
 
     return NextResponse.json(userWithoutPassword)
 
