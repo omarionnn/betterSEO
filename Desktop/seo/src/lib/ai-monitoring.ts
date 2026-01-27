@@ -167,8 +167,8 @@ Return exactly 8 prompts in a JSON array format: {"prompts": [{"text": "...", "c
     const result = JSON.parse(content)
     const prompts = result.prompts || result.suggestions || Object.values(result)[0] || []
 
-    return prompts.map((p: any) => ({
-      text: p.text || p.promptText,
+    return prompts.map((p: { text?: string; promptText?: string; category?: string }) => ({
+      text: p.text || p.promptText || '',
       category: (p.category || 'PRODUCT').toUpperCase()
     }))
 

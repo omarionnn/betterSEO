@@ -51,15 +51,17 @@ export const authOptions = {
     signIn: '/auth/signin'
   },
   callbacks: {
-    async jwt({ token, user }: { token: any; user: any }) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    async jwt({ token, user }: any) {
       if (user) {
         token.id = user.id
       }
       return token
     },
-    async session({ session, token }: { session: any; token: any }) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    async session({ session, token }: any) {
       if (token && session.user) {
-        session.user.id = token.id as string
+        (session.user as any).id = token.id as string
       }
       return session
     }

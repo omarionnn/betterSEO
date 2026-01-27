@@ -7,7 +7,6 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
 import { CheckCircle, XCircle, Rocket, Loader2, Sparkles } from 'lucide-react'
@@ -94,7 +93,7 @@ export function ResultDetailDialog({ open, onOpenChange, result }: ResultDetailD
                   Analysis <span className="text-primary font-medium tracking-normal text-2xl ml-2">Report</span>
                 </DialogTitle>
                 <DialogDescription className="text-gray-400 font-medium">
-                  Detailed breakdown of the AI's understanding and brand placement.
+                  Detailed breakdown of the AI&apos;s understanding and brand placement.
                 </DialogDescription>
               </div>
               <div className={cn(
@@ -108,7 +107,7 @@ export function ResultDetailDialog({ open, onOpenChange, result }: ResultDetailD
             <div className="bg-white/5 border border-white/10 rounded-[2rem] p-6">
               <p className="text-[10px] font-black uppercase text-gray-500 tracking-[0.2em] mb-3">Target Query</p>
               <p className="text-xl font-bold text-white leading-relaxed italic">
-                "{result.prompt.promptText}"
+                &quot;{result.prompt.promptText}&quot;
               </p>
             </div>
           </div>
