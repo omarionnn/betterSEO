@@ -10,7 +10,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import {
@@ -39,20 +38,20 @@ export function AddPromptDialog({ open, onOpenChange, onSubmit }: AddPromptDialo
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     if (!promptText.trim() || !category || !priority) {
       return
     }
 
     setLoading(true)
-    
+
     try {
       await onSubmit({
         promptText: promptText.trim(),
         category,
         priority,
       })
-      
+
       // Reset form
       setPromptText('')
       setCategory('')

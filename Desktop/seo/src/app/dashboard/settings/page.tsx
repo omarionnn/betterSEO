@@ -23,7 +23,6 @@ interface UserData {
 
 export default function Settings() {
   const { data: session } = useSession()
-  const [userData, setUserData] = useState<UserData | null>(null)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
 
@@ -42,7 +41,6 @@ export default function Settings() {
       const response = await fetch('/api/user/profile')
       if (response.ok) {
         const data = await response.json()
-        setUserData(data)
         setUserName(data.name || '')
         setUserEmail(data.email || '')
         setCompanyName(data.company?.name || '')

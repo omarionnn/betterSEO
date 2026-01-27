@@ -44,7 +44,7 @@ export function GeneratePromptsDialog({
                 const data = await response.json()
                 setSuggestions(data)
                 // Select all by default
-                setSelectedIndices(data.map((_: any, i: number) => i))
+                setSelectedIndices(data.map((_: Suggestion, i: number) => i))
             }
         } catch (error) {
             console.error('Error generating suggestions:', error)
@@ -162,7 +162,7 @@ export function GeneratePromptsDialog({
                                             "text-base font-black leading-tight transition-colors",
                                             selectedIndices.includes(index) ? "text-white" : "text-gray-300 group-hover:text-white"
                                         )}>
-                                            "{suggestion.text}"
+                                            &quot;{suggestion.text}&quot;
                                         </p>
                                         <Badge variant="outline" className={cn("text-[10px] w-fit px-3 py-1 border font-black uppercase tracking-widest rounded-lg", getCategoryColor(suggestion.category))}>
                                             {suggestion.category.replace('_', ' ')}

@@ -10,7 +10,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import {
@@ -60,13 +59,13 @@ export function EditPromptDialog({ open, onOpenChange, onSubmit, prompt }: EditP
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     if (!promptText.trim() || !category || !priority) {
       return
     }
 
     setLoading(true)
-    
+
     try {
       await onSubmit({
         promptText: promptText.trim(),
